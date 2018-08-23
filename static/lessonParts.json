@@ -1,0 +1,36 @@
+{
+  "clozePart":
+  {
+    "levels": [
+      {
+        "title": "sdfsdf",
+        "content": "Today is happy day,XiaoMing goto a Movie..."
+      }
+
+    ]
+
+  },
+  "listenPart":
+  {
+    "levels": [
+
+      {
+        "title": "When is Teachers day?",
+        "options": [
+        {
+          "urlsrc": "static/img/listenpart/001.png"
+
+        },
+        {
+          "urlsrc": "static/img/listenpart/002.png"
+
+        },
+        {
+          "urlsrc": "static/img/listenpart/003.png"
+
+        }]
+
+      }
+    ]
+  }
+}
