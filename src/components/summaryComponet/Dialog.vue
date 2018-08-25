@@ -5,16 +5,17 @@
         :duration="3200" 
         name='modle' >
         <!--这是个遮罩层-->
-        <div class='modal-mask'>
+        <div class='modal-mask' :style='{top:TopStyle,left:LeftStyle}'>
             <!-- 内容部分开始 -->
-                <div class='modal-wrapper'>
+                <div class='modal-wrapper' >
                         <!-- 头部关闭信息 -->
                     <div  @click='closeDialog'  class='closeImg'></div>
                         <!-- 主题部分盒子 -->
                     <div class='modal-container' >
                         <!-- 头部内容信息 -->
                         <div class='modal-header'>
-                            <slot name ='header'></slot>
+                            <img :src="Headerimgbg" alt="">
+                            <slot name ='Header'></slot>
                         </div> 
                         <!-- 主题内容部分        -->
                         <div class='modal-body'>
@@ -24,7 +25,7 @@
                         <!-- 尾部按钮部分 -->
                        
                         <div class='modal-footer' v-if="buttonshow">
-                                <span  :ref='index' v-for="(val,index,arr) in button0" :key='index' @click='buttonEvent(index,arr)' @mouseover="ButCenterOver(index)"  @mouseout="BtnCenterOut(index)"  :class="{'btn':!((btnCont+index)%2)}">{{val}}</span>
+                                <span  :ref='index' v-for="(val,index,arr) in ButtonMsg" :key='index' @click='buttonEvent(index,arr)' @mouseover="ButCenterOver(index)"  @mouseout="BtnCenterOut(index)"  :class="{'btn':!((btnCont+index)%2)}">{{val}}</span>
                         </div>
                     </div>
                 </div>
@@ -48,9 +49,21 @@
       }
     },
     props:{
-        button0:{
+        ButtonMsg:{
           type:Array,
-        }
+          default: ()=>['坚持退出','继续答题']
+        },
+        Headerimgbg:{
+            type:String,
+        },
+        TopStyle:{
+            type:String,
+            default:()=>'-5px'
+        },
+        LeftStyle:{
+            type:String,
+            default:()=>'-5px'
+        },
     },
     methods:{
       quithover(){
@@ -69,7 +82,7 @@
           (this.btnCont=1);
       },
       buttonEvent(index){
-          let leng = this.button0.length;
+          let leng = this.ButtonMsg.length;
           if(leng==0){
               this.buttonshow=false;
           } else if(leng==1){
@@ -94,7 +107,8 @@
         background: rgba(0,0,0,0.1);
         width: 100%;
         height: 100%;
-        z-index: 1000;
+        z-index: 2018;
+        
     }
      .modal-wrapper{
         border:2px solid black;
@@ -133,12 +147,12 @@
         border: 2px solid blue;
     }
     .modal-header  {
-        margin-top:.3125rem;
+        margin-top:-.3125rem;
         margin-left: 0.3125rem;
         text-align: center;
-        font-size: .625rem;;
-        font-weight: 400;
-        color: #42b983;    
+        font-size: 0.8rem;;
+        font-weight: 800;
+        color: #42b983;     
     } 
     .modal-body {
         margin-top:5%;
@@ -149,11 +163,12 @@
     }
     .modal-footer span{
         cursor: pointer;
-        width: .825rem;
-        height: .825rem;;
-        margin:.3125rem;
-        font-size: .3125rem; 
-        padding: .125rem 0.4125rem;
+        border-radius: .3125rem;
+        width:  .825rem;
+        height:  .825rem;
+        margin:  .4125rem;
+        font-size: .3125rem;
+        padding:  .225rem .4125rem;
         border: 1px solid black;
     }
     

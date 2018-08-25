@@ -5,7 +5,7 @@
         :duration="3200" 
         name='modle' >
         <!--这是个遮罩层-->
-        <div class='modal-mask'>
+        <div class='modal-mask' :style='{top:NoTopStyle,left:NoLeftStyle}'>
             <!-- 内容部分开始 -->
                 <div class='modal-wrapper'>
                         <!-- 头部关闭信息 -->
@@ -14,7 +14,9 @@
                     <div class='modal-container' >
                         <!-- 头部内容信息 -->
                         <div class='modal-header'>
-                            <slot name ='header'></slot>
+                            <img :src="imgbg" alt="">
+                            <!-- <img src="../../../static/imgs/summary/dialogNobg.jpg" alt=""> -->
+                            <slot name ='NoHeader'></slot>
                         </div> 
                         <!-- 主题内容部分        -->
                         <div class='modal-body'>
@@ -42,19 +44,30 @@
           bgcolor:{
                 backgroundColor: '#1BACE6'
           },
+        //   topStyle:'-10px',
+        //   leftStyle:'-10px',
       }
     },
     props:{
         button0:{
           type:Array,
-        }
+        },
+        imgbg:{
+            type:String,
+        },
+        NoTopStyle:{
+            type:String,
+        },
+        NoLeftStyle:{
+            type:String,
+        },
     },
     methods:{
       quithover(){
           this.bgcolorHover=false;
       },
       closeDialog(){
-         this.$emit('closeDialog',false)
+         this.$emit('closeNoDialog',false)
       },
       buttonEvent(index){
           let leng = this.button0.length;
@@ -78,7 +91,9 @@
         background: rgba(0,0,0,0.1);
         width: 100%;
         height: 100%;
-        z-index: 1000;
+        z-index: 2018;
+        /* top:-10px; 这里每个位置都要调整具体位置具体调整 */
+        
     }
      .modal-wrapper{
         border:2px solid black;
@@ -122,8 +137,13 @@
         text-align: center;
         font-size: .625rem;;
         font-weight: 400;
-        color: #42b983;    
+        color: #42b983; 
+        border: 1px solid blue;   
     } 
+    .modal-header img{
+        width:100%;
+        height: 70%;
+    }
     .modal-body {
         margin-top:5%;
         font-size:.5rem;; 

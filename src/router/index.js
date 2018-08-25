@@ -4,7 +4,7 @@ import Main from '@/components/main.vue'
 import Boot from '@/components/boot.vue'
 //iron90 用于测试用  
 import Summary from '@/components/summary.vue'
-// import Radarechart from '../components/summaryComponet/Radarechart.vue'
+import Dialogtest from '../components/Dialogtest.vue'
 import Summary0 from '../components/summaryComponet/Summary0.vue'
 //iron90 用于测试结束
 
@@ -23,11 +23,11 @@ export default new Router({
             name: 'summary',
             component: Summary
         },
-        // {
-        //     path: '/radar',
-        //     name: 'rader',
-        //     component: Radarechart
-        // },
+        {
+            path: '/dialog',
+            name: 'dialog',
+            component: Dialogtest
+        },
         //iron90 test my component over 
         {
             path: '/',

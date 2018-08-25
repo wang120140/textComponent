@@ -5,7 +5,7 @@
         :duration='3200'
         name='modal'
     >
-        <div class='modal-mask'>
+        <div class='modal-mask' :style="{top:TwoTopStyle,left:TwoLeftStyle}">
             <div class='modal-wrapper'>
                 <div @click="closeDialog" class='closeImg'></div>
                 <div class='modal-container'>
@@ -13,8 +13,8 @@
                         <slot></slot>
                     </div>
                     <div class='modal-footer' >
-                            <span   @mouseover="ButRigOver($event)"  @mouseout="BtnRigOut()"  :class="{'btn':btnRigCont}"   @click='ButtonRight'>坚持退出</span>
-                            <span  @mouseover="BtnLeftOver()" @mouseout="BtnLeftOut()" :class="{'btn':btnLeftCont}"  @click='ButtonLeft'>继续做题</span>
+                            <span   @mouseover="ButRigOver($event)"  @mouseout="BtnRigOut()"  :class="{'btn':btnRigCont}"   @click='ButtonLeft'>{{LeftButtonMsg}}</span>
+                            <span   @mouseover="BtnLeftOver()"       @mouseout="BtnLeftOut()"  :class="{'btn':btnLeftCont}"  @click='ButtonRight'>{{RightButtonMsg}}</span>
                     </div>
                 </div>
             </div>
@@ -31,15 +31,29 @@
                 btnLeftCont:true,
             }
         },
+        props: {
+            TwoTopStyle:{
+                style:String
+            },
+            TwoLeftStyle:{
+                style:String
+            },
+            RightButtonMsg:{
+                style:String
+            },
+            LeftButtonMsg:{
+                style:String
+            },
+        },
         methods:{
             closeDialog(){ //上箭头关闭对话框效果
-                this.$emit('closeDialog')
+                this.$emit('closeTwoDialog')
             },
             ButtonRight(){ //右按钮触发事件
-                this.$emit('ButtonRight')
+                this.$emit('TwoButtonRight')
             },
             ButtonLeft(){ //左按钮触发事件
-                this.$emit('ButtonLeft')
+                this.$emit('TwoButtonLeft')
             },
             ButRigOver($event){ //鼠标进入右按钮
                 console.log('右鼠标样式进入...')
@@ -72,7 +86,9 @@
         background:rgba(0,0,0,0.1);
         width:100%;
         height: 100%;
-        z-index:2018
+        z-index:2018;
+        /* top:-10px;
+        left:-10px; */
     }
     .modal-wrapper{
         border:.125rem solid blue;

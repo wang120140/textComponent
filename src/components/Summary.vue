@@ -1,7 +1,10 @@
 <template>  
     <swiper  class='scene0' ref='mySwiper' :style="scene0Bg" :options="swiperOption" >
+        
         <swiperSlide class='scene1' :style='scene1Bg'>
                 <!-- 这个是一左面部分 -->
+               
+                
                 <div class='defaultSco'>击败了{{defaultScore}}</div>
                 <div class='userinfoband'>
                     <div class='username'>{{userName}}</div>
@@ -75,9 +78,10 @@
     import { mapState,mapGetters} from 'vuex'
     import LevelCongratulations from "./LevelCongratulations"
     import PercentBar from './summaryComponet/PercentBar.vue' 
-    import MedalLabel from './MedalLabel.vue'//这个是标签组件
+    import MedalLabel from './summaryComponet/MedalLabel.vue'//这个是标签组件
     import RadarGraphic from './summaryComponet/RadarGraphic.vue'//这个是雷达图组件
     import Radarechart from './summaryComponet/Radarechart.vue' //这个EhartRadar组件的
+    import Dialog from './summaryComponet/Dialog.vue'
     export default{
         components:{
             swiper,
@@ -85,7 +89,7 @@
             PercentBar,
             RadarGraphic,
             MedalLabel,
-            Radarechart  
+            Radarechart ,
          },
         data () {
              return {
@@ -125,7 +129,8 @@
                      [0.1,1],
                      [0.1,1],
                      [0.1,1]
-                 ],   
+                 ],
+                 dialogShow0:false,   
              }
          },     
         computed:{
@@ -225,9 +230,11 @@
                 return self.getContent[index].content;
             }
          },
-/**************************computed结束**************************************** */
-       
-         methods:{           
+/**************************computed结束**************************************** */   
+         methods:{  
+            dialogShow(){
+                    this.dialogShow0 = !(this.dialogShow0);
+            },         
             onClickSelect(index){
                     [...this.getContent].forEach((ele ,index,arr)=>{
                         this.getContent[index].Sele=false;
@@ -235,7 +242,6 @@
                     this.getContent[index].Sele=true;
                    
                     },
-
             getContraText(){
                     const self = this;
                     let levels ='Lv2';
@@ -261,23 +267,31 @@
              //对swiper 条进行翻转判断      
                 this.mySwiper = this.$refs.mySwiper.swiper;  
                 this.mySwiper.on('transitionEnd', (event) => {
-                    if(this.mySwiper.activeIndex==0){
+                    if(this.mySwiper.activeIndex===0){
                         this.proBoxShow=true;
                     }
-                    if (this.mySwiper.activeIndex == 1) {        
+                    if (this.mySwiper.activeIndex === 1) {        
                     this.$refs.RadarGraphic.animeStart(this.point_arry);  
                     this.showradar=0
-                    this.proBoxShow=false
+                    this.proBoxShow=false;
+                    
+                    // if(  self.s1==undefined){ console.log(self.s1)}else
+                    // { console.log(self.s1);
+                    //     window.clearTimeout(self.s1);  
+                    // }  以后修改....
+                    // // (self.s1!=undefined) && (window.clearTimeout(self.s1));   
                     }
-                    if(this.mySwiper.activeIndex == 2){ 
+                    if(this.mySwiper.activeIndex === 2){ 
                         let that = this; 
                         this.showradar=1; 
-                        this.proBoxShow=false;               
-                        window.onresize=()=>{
-                            console.log(0) //触发这句话  这句话可有可无 为以后的做准备          
+                        this.proBoxShow=false; 
+                              console.log('1')      
+                        this.mySwiper.onresize=()=>{
+                                console.log('2')
                             that.showradar=0;
-                            setTimeout(()=>{
-                                console.log("定时器触发了")
+                            
+                           self.s1=windiw.setTimeout(()=>{
+                                console.log("定时器触发了....")
                                 that.showradar=1
                             },0)
                         }   
@@ -314,7 +328,10 @@
                 ]
             //雷达图的点分析结束          
          },
-         
+         destroyed:function(){
+             window.clearTimeout(self.s1);
+           
+         }
         }
 </script>
 

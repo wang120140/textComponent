@@ -5,19 +5,23 @@
         :duration='3200'
         name='modal'
     >
-        <div class='modal-mask'>
+        <div class='modal-mask' :style='{top:OneTopStyle,left:OneLeftStyle}' >
             <div class='modal-wrapper'>
                 <div @click="closeDialog" class='closeImg'></div>
                 <div class='modal-container'>
                     
                     <div class='modal-header'>
-                        <slot name='header'></slot>
+                        <slot name='OneHeader'></slot>
                     </div>
                     <div class='modal-body'>
                         <slot></slot>
                     </div>
                     <div class='modal-footer' >
-                            <span   @mouseover="ButCenterOver($event)"  @mouseout="BtnCenterOut()"  :class="{'btn':btnCenterCont}"   @click='ButtonCenter'>{{CenterButtonMsg}}</span>     
+                            <span   
+                                @mouseover="ButCenterOver($event)" 
+                                 @mouseout="BtnCenterOut()"  
+                                 :class="{btn:btnCenterCont}"   
+                                 @click='OneButtonCenter'>{{CenterButtonMsg}}</span>     
                     </div>
                 </div>
             </div>
@@ -33,13 +37,24 @@
                 btnCenterCont:true,        
             }
         },
-        props:['CenterButtonMsg'],
+        props:{
+            CenterButtonMsg:{
+                type:String,
+            },
+            OneTopStyle:{
+                type:String,
+            },
+            OneLeftStyle:{
+                type:String,
+            },
+        },
+        
         methods:{
             closeDialog(){ //上箭头关闭对话框效果
-                this.$emit('closeDialog')
+                this.$emit('closeOneDialog')
             },
-            ButtonCenter(){ //中间按钮触发事件
-                this.$emit('ButtonCenter')
+            OneButtonCenter(){ //中间按钮触发事件
+                this.$emit('OneButtonCenter')
             },
           
             ButCenterOver($event){ //鼠标进入右按钮
@@ -56,6 +71,11 @@
 </script>
 
 <style scoped>
+    div{
+        margin: 0;
+        padding: 0;
+    }
+    
     .btn{
         background-color: aqua;
     }
@@ -64,7 +84,8 @@
         background:rgba(0,0,0,0.1);
         width:100%;
         height: 100%;
-        z-index:2018
+        z-index:2018;
+        
     }
     .modal-wrapper{
         border:.125rem solid blue;
@@ -104,8 +125,8 @@
         margin-top:.3125rem;
         margin-left: 0.3125rem;
         text-align: center;
-        font-size: 1.25rem;;
-        font-weight: 400;
+        font-size: 0.8rem;;
+        font-weight: 800;
         color: #42b983;    
     }
     .modal-body{
@@ -113,7 +134,7 @@
         font-size: .5rem;
     }
     .modal-footer{
-        margin-top: .825rem;
+        margin-top: .425rem;
     }
     .modal-footer span{
         cursor: pointer;
