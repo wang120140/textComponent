@@ -286,11 +286,11 @@
                         this.showradar=1; 
                         this.proBoxShow=false; 
                               console.log('1')      
-                        this.mySwiper.onresize=()=>{
+                       window.onresize=()=>{
                                 console.log('2')
                             that.showradar=0;
                             
-                           self.s1=windiw.setTimeout(()=>{
+                           self.s1=window.setTimeout(()=>{
                                 console.log("定时器触发了....")
                                 that.showradar=1
                             },0)
