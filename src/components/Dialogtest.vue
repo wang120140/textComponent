@@ -1,7 +1,7 @@
 <template>
     <div>
         <pre>
-            这个是弹窗对话框测试组件 里面有封装好的四个弹窗组件 
+            这个是弹窗对话框测试组件 里面有封装好的四个弹窗组件
             1.没有按钮的对框框组件
             2.一个按钮的对话框组件
             3.两个按钮的对话框组件
@@ -17,7 +17,7 @@
             topStyle: 是调整对话框的顶部的位置
             leftStyle: 是调整对话框左部的位置
             @closeNoDialog: 是左上角的控制按钮的显示和关闭  -->
-            <no-dialog 
+            <no-dialog
                 v-if="NoDialogShow"
                 :imgbg='imgbgNo'
                 :NoTopStyle='TopStyleNo'
@@ -39,14 +39,14 @@
             CenterButtonMsg : 按钮的名称
             OneButtonCenter : 点击按钮的时候触发的事件
             closeOneDialog : 一个按钮的对话框显示和关闭 -->
-            <one-dialog 
+            <one-dialog
                 v-if="OneDialogShow"
                 :OneTopStyle='TopStyleOne'
                 :OneLeftStyle='LeftStyleOne'
                 :CenterButtonMsg='CenterButtonMsgOne'
                 @OneButtonCenter='OneButtonCenterEvent'
                 @closeOneDialog='OneDialogClose'
-            >   
+            >
                 <!-- 这里填写头部信息 -->
                 <div slot="OneHeader">你真棒</div>
                 <!-- 这里填写主题信息 -->
@@ -66,7 +66,7 @@
             TwoButtonRight 点击右按钮触发的事件
             closeTwoDialog 两个按钮的对话框显示和关闭     -->
 
-            <two-dialog 
+            <two-dialog
                 v-if="TwoDialogShow"
                 :two-top-style="TopStyleTwo"
                 :two-left-style="LeftStyleTwo"
@@ -84,7 +84,7 @@
                 4.综合对话框
             </button>
             <!-- 这里不知道烦什么的邪乎区分大小写 -->
-            <Dialog 
+            <Dialog
                 v-if="DialogShow"
                 :headerimgbg="headimgbg"
                 :top-style="TopStyleDialog"
@@ -93,22 +93,22 @@
                 @ButtonCenter='ButtonCenterEvent'
                 @ButtonRight='ButtonRightEvent'
                 @ButtonLeft='ButtonLeftEvent'
-                @closeDialog='DialogClose'   
+                @closeDialog='DialogClose'
                 >
                 <div slot="Header">继续做题 </div>
                 主题信息
                 </Dialog>
 
         </div>
-        
-    
+
+
     </div>
 </template>
 
-<script> 
+<script>
 
     //需要什么对话框  就从中引对话框  需要什么的样式的可以在组件中直接修改
-    import NoDialog from   '../components/summaryComponet/NoDialog.vue'  
+    import NoDialog from   '../components/summaryComponet/NoDialog.vue'
     import OneDialog from  '../components/summaryComponet/OneDialog.vue'
     import TwoDialog from  '../components/summaryComponet/TwoDialog.vue'
     import Dialog from     '../components/summaryComponet/Dialog.vue'
@@ -141,7 +141,7 @@
                 LeftButtonMsgTwo:'坚持退出',
                 RightButtinMsgTwo:'继续答题',
                 //两个按钮的对话框结束
-                //综合对话框的开始 
+                //综合对话框的开始
                 DialogShow:false,
                 headimgbg:'',
                 TopStyleDialog:'-4px',
@@ -189,7 +189,7 @@
             },
             //两个按钮的对话框的方法结束
             //对话框的方法的开始
-            DialogButtonControl(){ 
+            DialogButtonControl(){
                 this.DialogShow=!(this.DialogShow);
             },
             DialogClose(){
@@ -210,7 +210,7 @@
 
         },
         mounted() {
-           
+
            console.log(Url)
         },
 
