@@ -82,6 +82,7 @@
     import RadarGraphic from './summaryComponet/RadarGraphic.vue'//这个是雷达图组件
     import Radarechart from './summaryComponet/Radarechart.vue' //这个EhartRadar组件的
     import Dialog from './summaryComponet/Dialog.vue'
+    import Url from './summaryComponet/Url.js'
     export default{
         components:{
             swiper,
@@ -138,31 +139,31 @@
             //几个背景图
                 scene0Bg(){
                     return{ 
-                        background:'url("static/imgs/summary/scene0Bg.jpg") no-repeat',
+                        background:'url('+Url.url0+'scene0Bg.jpg) no-repeat',
                         backgroundSize: '100% 100%'
                     }
                 },
                 scene1Bg(){
                     return{
-                    background:'url("static/imgs/summary/scene1Bg.jpg") no-repeat',
+                    background:'url('+Url.url0+'scene1Bg.jpg) no-repeat',
                     backgroundSize: '100% 100%'
                     }
                 },
                 scene2Bg(){
                     return{
-                    background:'url("static/imgs/summary/scene2Bg.jpg") no-repeat',
+                    background:'url('+Url.url0+'scene2Bg.jpg) no-repeat',
                     backgroundSize: '100% 100%'
                     }
                 },
                 scene3Bg(){
                     return{
-                    background:'url("static/imgs/summary/scene3Bg.jpg") no-repeat',
+                    background:'url('+Url.url0+'scene3Bg.jpg) no-repeat',
                     backgroundSize: '100% 100%'
                     } 
                 },
                 radarPicture() {
                     return {
-                        background: 'url("static/imgs/summary/radar2.png") no-repeat',
+                        background: 'url('+Url.url0+'radar2.png) no-repeat',
                         backgroundSize: '100% 100%',
                         backgroundPosition: 'center center',
                     }
