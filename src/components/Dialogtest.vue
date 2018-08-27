@@ -1,8 +1,15 @@
 <template>
     <div>
+        <pre>
+            这个是弹窗对话框测试组件 里面有封装好的四个弹窗组件 
+            1.没有按钮的对框框组件
+            2.一个按钮的对话框组件
+            3.两个按钮的对话框组件
+            4.综合的对话框组件
+        </pre>
         <div class="noshow">
             <button @click="NoDialogButtonControl">
-                没有按钮的对话框
+                1.没有按钮的对话框
             </button>
             <!--  属性介绍 自己在属性中安需填写
             NoDialogShow :控制对话框是否显示
@@ -23,7 +30,7 @@
 
         <div>
             <button @click="OneDialogButtonControl">
-                有一个按钮的对话框
+                2.有一个按钮的对话框
             </button>
             <!-- 属性介绍  这里面的有一个按钮的弹窗有三个 基本都符合要求 如需修稿可以在组件中修改
             OneDialogShow :控制一个按钮的对话框是否显示
@@ -49,7 +56,7 @@
 
         <div>
             <button @click="TwoDialogButtonControl">
-                有两个按钮的对话框
+                3.有两个按钮的对话框
             </button>
             <!-- 属性介绍  项目中弹出有两个按钮的对话框中有两个 目前封装的基本上符合要求
             TwoDialogShow  控制两个按钮的对话框是否显示
@@ -74,7 +81,7 @@
         </div>
         <div>
             <button @click="DialogButtonControl">
-                综合对话框
+                4.综合对话框
             </button>
             <!-- 这里不知道烦什么的邪乎区分大小写 -->
             <Dialog 
@@ -105,6 +112,7 @@
     import OneDialog from  '../components/summaryComponet/OneDialog.vue'
     import TwoDialog from  '../components/summaryComponet/TwoDialog.vue'
     import Dialog from     '../components/summaryComponet/Dialog.vue'
+    import Url from '../components/summaryComponet/Url.js'
     export default {
         components: {
             NoDialog,
@@ -116,7 +124,7 @@
             return {
                 //以下没有按钮对话框需要的属性值
                 NoDialogShow:false,
-                imgbgNo:'../../../static/imgs/summary/dialogNobg.jpg', //这个地址相对于对话框的相对位置来查找建议使用@
+                imgbgNo:Url.Url3+'dialogNobg.jpg', //这个地址相对于对话框的相对位置来查找建议使用@
                 TopStyleNo:'-10px',
                 LeftStyleNo:'-10px',
                 //没有按钮的对话框的属性值结束
@@ -203,16 +211,17 @@
         },
         mounted() {
            
-           
+           console.log(Url)
         },
 
     }
 </script>
 
 <style scoped>
+    pre{
+        font-size: .325rem;
+    }
     .noshow{
         position: relative;
-
-
     }
 </style>
